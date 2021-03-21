@@ -1,0 +1,6 @@
+* import Switch & Route from react-router-dom
+* add Route for Home , Signin , SignUp & NotFound in App.js
+* add exact props to Route 
+* create all 4 components in /components
+* add path to links in Navbar.js
+* add Home to Navigation in Navbar.js

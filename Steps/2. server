@@ -1,0 +1,4 @@
+* create entry point file on server called server.js
+* install express And mongoose
+* create listening port
+* create database connection
