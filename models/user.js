@@ -3,11 +3,10 @@ const mongoose = require("mongoose");
 //Creating User Schema 
 //Key = Atrribute of the user
 const UserSchema = mongoose.Schema({
-    name:{
+    username:{
         type:String,
         required:true
     },
-    profilePic:String,
     email:{
         type:String,
         required:true
@@ -24,9 +23,4 @@ const UserSchema = mongoose.Schema({
         type: Date,
         default:Date.now()
     },
-    location:{
-        type:String,
-        required:true
-    },
-    soldProducts:Number,
   });

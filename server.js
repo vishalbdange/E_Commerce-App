@@ -10,7 +10,9 @@ dotenv.config({ path: "./config/config.env" });
 
 //connecting to DB
 connectDB();
+//routes
 
+app.use("/users/", require("./routes/users"));
 
 app.listen(PORT,()=>{
     console.log(`Server Started in ${process.env.NODE_ENV} at the port : ${process.env.PORT}`)

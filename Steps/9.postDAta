@@ -1,0 +1,7 @@
+* prep data object for http request
+* set loading true
+* install and import axios
+* api signup(data)
+- return response
+- Axios uses Promise API, so sign up then catch
+- Set form fields empty , successmsg w/ response,loadig false

@@ -1,0 +1,6 @@
+* install validator
+* setup validations within handle submit
+* create helper function for messsages
+* output messsage
+* remove success/error messages within handlechange
+* create helper function for loading

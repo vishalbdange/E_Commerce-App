@@ -1,0 +1,5 @@
+* setup component State
+* Destructure State
+* Add name and value attributes to input field
+* add event handler to onChange on input field
+* add event handler to onSubmit event of form
