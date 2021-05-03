@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-//Creating User Schema 
-//Key = Atrribute of the user
 const UserSchema = mongoose.Schema({
     username:{
         type:String,
@@ -15,12 +13,11 @@ const UserSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    createdAt :{
-        type: Date,
-        default:Date.now(),
-    },
-    updatedAt :{
-        type: Date,
-        default:Date.now()
-    },
-  });
+    role : {
+        type : Number,
+        default : 0
+    }
+  },{timestamps : true});
+
+  const User = mongoose.model("User",UserSchema)
+  module.exports = User;

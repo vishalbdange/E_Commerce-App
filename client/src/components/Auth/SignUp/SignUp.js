@@ -9,14 +9,10 @@ import useStyles from "./styles"
 import { showSuccessMsg } from "../../../helper/showSuccessMsg"
 import { showErrorMsg } from "../../../helper/showErrorMsg"
 import { Loading } from "../../../helper/Loading"
-import { useDispatch } from "react-redux"
-import {signUp} from "../../../actions/auth.js"
-import {useHistory} from "react-router-dom"
+import { signUp } from "../../../api/auth.js"
+import { useHistory } from "react-router-dom"
 const SignUp = () => {
-
-  const dispatch = useDispatch();
-  const history = useHistory();
-
+  let history = useHistory();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -67,7 +63,23 @@ const SignUp = () => {
         ...formData, loading: true
       })
 
-      dispatch(signUp(data),history);
+      signUp(data)
+        .then(response => {
+          console.log(response);
+          setFormData({
+            username: "",
+            email: "",
+            password: "",
+            password2: "",
+            successMsg: response.data.successMessage,
+            loading: false,
+            errorMsg,
+          })
+        })
+        .catch(err => {
+          console.log("Axxios Sign Up error", err, err.response);
+          setFormData({ ...formData, loading: false, errorMsg: err.response.data.errorMessage });
+        })
     }
   }
 

@@ -1,0 +1,5 @@
+* install  express-validcator
+- signUpvalidator
+- validatorResult middleware
+- return res.errorMessage
+- add errorMsg in Signup component

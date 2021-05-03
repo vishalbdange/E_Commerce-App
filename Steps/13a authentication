@@ -1,0 +1,16 @@
+* destructure Incoming Data
+* check if email exists in database
+* compare passwords
+* install json webtoken
+* payload
+* create config folder w/ files (keys,dev,prod)
+* sign jwt 
+* send res { token , usrs :{ ...}} (Done after many bugs)
+* Localstorage
+Localstorage can store more amount of data (in MBs)
+Have data even after window is closed where are coockies do not
+Domain specific 
+* install  js-cookie
+* setup cookies.js
+* catching sign In response (token)
+- testing
