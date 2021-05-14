@@ -13,4 +13,9 @@ Domain specific
 * install  js-cookie
 * setup cookies.js
 * catching sign In response (token)
-- testing
+* testing
+* create isAuthenticated function ( used to redirect to th dashboard)
+*redirect to Dashboard with react router
+* Logout Functionality
+* Protected Routes
+-Handling errors

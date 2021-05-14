@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom"
+import React, { useState,useEffect } from 'react';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { FormControl, Input, InputLabel, Button, Grid, Typography, formatMs } from "@material-ui/core";
 import isEmail from "validator/lib/isEmail"
@@ -9,10 +8,23 @@ import useStyles from "./styles"
 import { showSuccessMsg } from "../../../helper/showSuccessMsg"
 import { showErrorMsg } from "../../../helper/showErrorMsg"
 import { Loading } from "../../../helper/Loading"
+import { Link,useHistory } from "react-router-dom"
+import { isAuthenticated } from "../../../helper/auth"
 import { signUp } from "../../../api/auth.js"
-import { useHistory } from "react-router-dom"
 const SignUp = () => {
   let history = useHistory();
+
+  useEffect(() => {
+    if (isAuthenticated() && isAuthenticated().role == 1) {
+      history.push("/admin/dashboard");
+    }
+    else if (isAuthenticated() && isAuthenticated().role == 0) {
+      history.push("/user/dashboard");
+    }
+  }, [history])
+
+
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",

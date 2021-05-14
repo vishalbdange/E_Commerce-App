@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,Fragment } from "react";
 
 import {
   AppBar,
@@ -13,13 +13,14 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import useStyles from "./styles.js";
-import { Link , useHistory,useLocation } from "react-router-dom"
+import { Link , withRouter } from "react-router-dom"
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { isAuthenticated , logout } from "../../helper/auth.js";
 
 
-const Navbar = () => {
+const Navbar = ({history}) => {
   const {
     mobileloginMenu,
     parentTool,
@@ -52,6 +53,13 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
+  const handleLogout = (e) =>{
+    logout(() =>{
+      history.push("signin");
+    })
+  }
+
+
   //get user data
 
   useEffect(() => {
@@ -72,38 +80,43 @@ const Navbar = () => {
 
     return (
       <>
-        <Link
-          to="/"
-          color="inherit"
-          className={menuButton}
-          key="Home"
-        >
-          <MenuItem>Home</MenuItem>
-        </Link>
-        <Link
-          to="/signup"
-          color="inherit"
-          className={menuButton}
-          key="Sign Up"
-        >
-          <MenuItem>Sign Up</MenuItem>
-        </Link>
-        <Link
-          to="/signin"
-          color="inherit"
-          className={menuButton}
-          key="signin "
-        >
-          <MenuItem>signin </MenuItem>
-        </Link>
-        <Link
-          to="/signin"
-          color="inherit"
-          className={menuButton}
-          key="Sell Books"
-        >
-          <MenuItem>Sell Books</MenuItem>
-        </Link>
+      {
+        (!isAuthenticated() &&
+          <Fragment >
+            <Link
+              to="/"
+              color="inherit"
+              className={menuButton}
+              key="Home"
+            >
+              <MenuItem>Home</MenuItem>
+            </Link>   
+            <Link
+              to="/signup"
+              color="inherit"
+              className={menuButton}
+              key="Sign Up"
+            >
+              <MenuItem>Sign Up</MenuItem>
+            </Link>
+            <Link
+              to="/signin"
+              color="inherit"
+              className={menuButton}
+              key="signin "
+            >
+              <MenuItem>signin </MenuItem>
+            </Link>
+          </Fragment>
+        )}
+        {(isAuthenticated() && isAuthenticated().role == 0 &&
+            <Link to="/">
+            <Button className={menuButton}>
+              Logout
+            </Button>
+          </Link>
+         )}
+
       </>
     );
   };
@@ -112,21 +125,55 @@ const getMenuButtons = () => {
     return (
       <>
         <div className={midNavbar}>
-          <Link  to="/">
-            <Button className={menuButton}>
-              Home
-            </Button>
-          </Link>
-          <Link to="/signup">
-            <Button className={menuButton}>
-              Sign Up
-            </Button>
-          </Link>
-          <Link to="signin">
-            <Button className={menuButton}>
-              Sign In
-            </Button>
-          </Link>
+
+        {
+         (!isAuthenticated() && 
+          <Fragment>
+            <Link  to="/">
+              <Button className={menuButton}>
+                Home
+              </Button>
+            </Link>
+            <Link to="/signup">
+              <Button className={menuButton}>
+                Sign Up
+              </Button>
+            </Link>
+            <Link to="signin">
+              <Button className={menuButton}>
+                Sign In
+              </Button>
+            </Link>
+          </Fragment>
+         )}
+
+         {(isAuthenticated() && isAuthenticated().role == 0 &&
+         <Fragment>
+            <Link to="/user/dashboard ">
+              <Button className={menuButton}>
+               dashboard
+              </Button>
+            </Link>    
+            </Fragment>   
+         )}
+        {(isAuthenticated() && isAuthenticated().role == 1 &&
+          <Fragment>
+            <Link to="/admin/dashboard ">
+              <Button className={menuButton}>
+               dashboard
+              </Button>
+            </Link>  
+          </Fragment>     
+         )}
+        {(isAuthenticated() &&
+          <Fragment>
+            <Link to="/signin">
+              <Button className={menuButton} onClick={handleLogout}>
+               Logout
+              </Button>
+            </Link>   
+          </Fragment>    
+         )}
         </div>
         </>
     )}
@@ -209,4 +256,4 @@ const getMenuButtons = () => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);
