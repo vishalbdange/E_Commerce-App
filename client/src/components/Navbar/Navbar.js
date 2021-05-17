@@ -82,7 +82,7 @@ const Navbar = ({history}) => {
       <>
       {
         (!isAuthenticated() &&
-          <Fragment >
+        <>
             <Link
               to="/"
               color="inherit"
@@ -107,16 +107,31 @@ const Navbar = ({history}) => {
             >
               <MenuItem>signin </MenuItem>
             </Link>
-          </Fragment>
+          </>
         )}
-        {(isAuthenticated() && isAuthenticated().role == 0 &&
-            <Link to="/">
-            <Button className={menuButton}>
-              Logout
-            </Button>
-          </Link>
+      <>
+    {(isAuthenticated() && isAuthenticated().role == 0 &&
+              <Link to="/user/dashboard ">
+                <Button className={menuButton}>
+                    Dashboard
+                </Button>
+              </Link>    
+          )}
+          {(isAuthenticated() && isAuthenticated().role == 1 &&
+              <Link to="/admin/dashboard ">
+                <Button className={menuButton}>
+                    Dashboard
+                </Button>
+              </Link>      
+          )}
+          {(isAuthenticated() &&
+              <Link to="/signin">
+                <Button className={menuButton} onClick={handleLogout}>
+                    Logout
+                </Button>
+              </Link>   
          )}
-
+        </>
       </>
     );
   };
