@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { FormControl, Input, InputLabel, Button, Grid, Typography, formatMs } from "@material-ui/core";
+import { FormControl, Button, Typography,TextField } from "@material-ui/core";
 import isEmail from "validator/lib/isEmail"
 import isEmpty from "validator/lib/isEmpty"
 import equals from "validator/lib/equals"
@@ -104,12 +104,12 @@ const SignUp = () => {
           {loading && <div className={classes.loading}>{Loading()}</div>}
           {errorMsg && showErrorMsg(errorMsg)}
           {successMsg && showSuccessMsg(successMsg)}
-          <Typography variant="h5" style={{ textAlign: "center" }}>Sign Up </Typography>
+          <Typography variant="h5" className={classes.heading}>Sign Up </Typography>
           <FormControl required fullWidth margin="normal">
-            <InputLabel htmlFor="username">
-              Username
-                </InputLabel>
-            <Input
+            <TextField
+              variant="outlined"
+              className={classes.inp}
+              label="Username"
               name="username"
               value={username}
               type="username"
@@ -118,10 +118,10 @@ const SignUp = () => {
             />
           </FormControl>
           <FormControl required fullWidth margin="normal">
-            <InputLabel htmlFor="email">
-              e-mail
-                </InputLabel>
-            <Input
+            <TextField
+              variant="outlined"
+              className={classes.inp}
+              label="Email"
               name="email"
               value={email}
               type="email"
@@ -130,10 +130,10 @@ const SignUp = () => {
             />
           </FormControl>
           <FormControl required fullWidth margin="normal">
-            <InputLabel htmlFor="password" >
-              password
-                </InputLabel>
-            <Input
+            <TextField
+              variant="outlined"
+              className={classes.inp}
+              label="Password"
               name="password"
               value={password}
               type="password"
@@ -142,26 +142,30 @@ const SignUp = () => {
           </FormControl>
 
           <FormControl required fullWidth margin="normal">
-            <InputLabel htmlFor="passwordConfirm">
-              confrim password
-                </InputLabel>
-            <Input
+            <TextField
+              variant="outlined"
+              className={classes.inp}
+              label="Confirm Password"
               name="password2"
               value={password2}
               type="password"
               onChange={handlechange}
             />
           </FormControl>
-          <Button
-            fullWidth
-            variant="outlined"
-            color="primary"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Join
-              </Button>
-          <p style={{ textAlign: "center", }}>Have an Account? <Link to="/signin">Login</Link></p>
+          <FormControl required fullWidth margin="normal">
+            <Button
+              fullWidth
+              className={classes.subButton}
+              variant="outlined"
+              color="primary"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Join
+            </Button>
+          </FormControl>
+
+          <p className={classes.signdes}>Have an Account? <Link to="/signin">Login</Link></p>
         </form>
       </div>
 

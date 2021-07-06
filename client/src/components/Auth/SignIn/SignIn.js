@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { FormControl, Input, InputLabel, Button, Grid, Typography, formatMs } from "@material-ui/core";
+import { FormControl, Input, InputLabel, Button, Grid, Typography,TextField } from "@material-ui/core";
 import isEmail from "validator/lib/isEmail"
 import isEmpty from "validator/lib/isEmpty"
 import useStyles from "./styles"
@@ -73,7 +73,7 @@ const SignIn = () => {
           }
         })
         .catch(err => {
-          console.log(err.response.data.errorMsg)
+          console.log(err.response?.data.errorMsg)
           setFormData({
             ...formData,
             loading : false,
@@ -105,7 +105,6 @@ const SignIn = () => {
 
   return (
     <>
-      <h1>This is SignIn</h1>
       <CssBaseline />
       <div className={classes.parent}>
 
@@ -114,38 +113,40 @@ const SignIn = () => {
           {errorMsg && showErrorMsg(errorMsg)}
           <Typography variant="h5" style={{ textAlign: "center" }}>Sign In </Typography>
           <FormControl required fullWidth margin="normal">
-            <InputLabel htmlFor="email">
-              e-mail
-                </InputLabel>
-            <Input
+            <TextField
+              variant="outlined"
+              className={classes.inp}
               name="email"
               value={email}
+              label="Email"
               type="email"
               autoComplete="email"
               onChange={handlechange}
             />
           </FormControl>
           <FormControl required fullWidth margin="normal">
-            <InputLabel htmlFor="password" >
-              password
-                </InputLabel>
-            <Input
+            <TextField
+              id="outlined"
+              variant="outlined"
+              className={classes.inp}
               name="password"
-              value={password}
               type="password"
+              value={password}
+              label="Password"
               onChange={handlechange}
             />
           </FormControl>
           <Button
             fullWidth
+            className={classes.subButton}
             variant="outlined"
             color="primary"
             type="submit"
             onClick={handleSubmit}
           >
             Login
-              </Button>
-          <p style={{ textAlign: "center", }}>Don't have an Account? <Link to="/signup">SignUp</Link></p>
+          </Button>
+          <p className={classes.signdes}>Don't have an Account? <Link to="/signup">SignUp</Link></p>
         </form>
       </div>
 

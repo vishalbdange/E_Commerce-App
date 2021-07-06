@@ -2,20 +2,22 @@ import {makeStyles} from "@material-ui/core"
 const styles = makeStyles((theme) => ({
    
             appBar : {
-                background: "#000",  
+                background: "#000000",
+                background: "-webkit-linear-gradient(to right, #001510, #00bf8f)",   
+                background: "linear-gradient(to left, #001510, #00bf8f)",
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 "@media (max-width : 900px)"  : {
                     paddingLeft: 0,
-                },
-                
+                },                    
 
             },
             appBarSpacer : theme.mixins.toolbar,
             menuButton : {
                 fontWeight : 700,
                 marginLeft : "30px",
+                textDecoration :"none",
                 color :"white !important",
                 "&:hover" : {
                     borderBottom : "2px solid white",

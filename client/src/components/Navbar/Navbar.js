@@ -118,7 +118,7 @@ const Navbar = ({history}) => {
               </Link>    
           )}
           {(isAuthenticated() && isAuthenticated().role == 1 &&
-              <Link to="/admin/dashboard ">
+              <Link to="/admin/dashboard">
                 <Button className={menuButton}>
                     Dashboard
                 </Button>
